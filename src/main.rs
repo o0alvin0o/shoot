@@ -28,9 +28,7 @@ fn main() {
     }
     else if files.is_dir() {
         for file in WalkDir::new(files).into_iter().filter_map(|e| e.ok()) {
-            println!("Current handles number : {}", handles.len());
             if handles.len() == MAX_THREADS {
-                println!("{max_thread_warning}");
                 for _ in 0..MAX_THREADS {
                     handles.pop().unwrap().join().unwrap();
                 }
@@ -53,8 +51,6 @@ fn main() {
         }
     }
 }
-
-
 
 
 fn read_file(path_buf: &PathBuf, pattern: &str) {
